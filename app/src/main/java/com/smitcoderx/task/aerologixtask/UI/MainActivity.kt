@@ -7,15 +7,13 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.smitcoderx.task.aerologixtask.Model.Data
 import com.smitcoderx.task.aerologixtask.UI.Adapter.MainItemAdapter
 import com.smitcoderx.task.aerologixtask.Utils.AerologixApplication
@@ -57,39 +55,42 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(false)
             adapter = itemAdapter
         }
-
+        loadData()
         binding.swipeRefresh.setOnRefreshListener {
-            mainViewModel.handle().observe(this) {
-                handleUI(it)
+            val job = mainViewModel.refreshed()
+            binding.swipeRefresh.isRefreshing = true
+            if (job.isCompleted) {
+                mainViewModel.apiData.observe(this) {
+                    itemAdapter.differ.submitList(it)
+                    binding.swipeRefresh.isRefreshing = false
+                }
             }
-            binding.swipeRefresh.isRefreshing = false
+
+            /*itemAdapter.differ.submitList(data)
+            itemAdapter.notifyDataSetChanged()*/
         }
 
-        loadData(itemAdapter)
 
-        binding.rvItemList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 || dy < 0 && binding.fabAdd.isShown) {
-                    binding.fabAdd.visibility = View.GONE
-                    binding.fabAdd.visibility = View.GONE
-                }
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    binding.fabAdd.visibility = View.VISIBLE
-                }
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
 
         binding.fabSave.setOnClickListener {
-            storeFile("Employees")
+            if (data.isNotEmpty()) {
+                val status = storeFile("Employees")
+                if (status) {
+                    binding.fabAdd.collapse()
+                    Snackbar.make(binding.cooMain, "File Saved", Snackbar.LENGTH_SHORT).show()
+                } else {
+                    Snackbar.make(binding.cooMain, "Something Went Wrong", Snackbar.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Snackbar.make(binding.cooMain, "No Data to Store", Snackbar.LENGTH_SHORT)
+                    .show()
+            }
         }
 
     }
 
-    private fun loadData(itemAdapter: MainItemAdapter) {
+    private fun loadData() {
         mainViewModel.data.observe(this) { result ->
             result.data?.let { data.addAll(it) }
             handleUI(result)
@@ -101,18 +102,12 @@ class MainActivity : AppCompatActivity() {
             itemAdapter.differ.submitList(result.data)
 
             progress.isVisible = result is Resources.Loading && result.data.isNullOrEmpty()
-//                textViewError.isVisible = result is Resources.Error && result.data.isNullOrEmpty()
             if (result is Resources.Error && result.data.isNullOrEmpty()) {
-                Toast.makeText(this@MainActivity, result.message.toString(), Toast.LENGTH_SHORT)
+                Snackbar.make(binding.cooMain, result.message.toString(), Snackbar.LENGTH_SHORT)
                     .show()
                 Log.d(TAG, "onCreate: ${result.message}")
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        loadData(itemAdapter)
     }
 
     private fun checkPermission(requestCode: Int) {
@@ -145,7 +140,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun storeFile(name: String) {
+    private fun storeFile(name: String): Boolean {
+        var status = false
         val item = Convertor().toDataJson(data)
         Log.d(TAG, "storeFile: $item")
         val resolver = applicationContext.contentResolver
@@ -161,6 +157,7 @@ class MainActivity : AppCompatActivity() {
                     it?.write(item.toByteArray(Charset.defaultCharset()))
                     it?.close()
                 }
+                status = true
             }
         } else {
             val rootPath = "/storage/emulated/0/Download/"
@@ -172,11 +169,19 @@ class MainActivity : AppCompatActivity() {
                     outputStream.write(item.toByteArray())
                     outputStream.flush()
                     outputStream.close()
+                    status = true
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                status = true
             }
-
         }
+        return status
     }
+
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
 }

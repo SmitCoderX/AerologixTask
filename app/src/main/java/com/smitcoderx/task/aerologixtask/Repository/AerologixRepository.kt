@@ -10,12 +10,14 @@ import kotlinx.coroutines.delay
 
 class AerologixRepository(private val db: AerologixDatabase) {
 
+    suspend fun response() = ApiClient.retrofitService.getData()
+
     fun getData() = networkBoundResource(
         query = {
             db.getAerologixDb().getAllDataFromDB()
         },
         fetch = {
-            delay(2000)
+            delay(200)
             Log.d(TAG, "getData: ${ApiClient.retrofitService.getData()}")
             ApiClient.retrofitService.getData()
         },
@@ -25,4 +27,5 @@ class AerologixRepository(private val db: AerologixDatabase) {
             }
         },
     )
+
 }

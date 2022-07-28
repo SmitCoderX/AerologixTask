@@ -78,16 +78,6 @@
                 fab:fab_labelStyle="@style/menu_labels_style">
 
                 <com.getbase.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab_load"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:tint="@color/black"
-                    app:fab_icon="@drawable/ic_load"
-                    app:fab_size="mini"
-                    app:fab_title="Load Data"
-                    app:rippleColor="@color/trans_gray" />
-
-                <com.getbase.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
