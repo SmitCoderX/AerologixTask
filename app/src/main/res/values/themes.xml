@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/bg_trans_fab</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

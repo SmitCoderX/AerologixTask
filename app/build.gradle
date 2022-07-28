@@ -92,6 +92,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.0'
     // FAB
     implementation 'com.getbase:floatingactionbutton:1.10.1'
+    // MotionToast
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
 }
 
 kapt {

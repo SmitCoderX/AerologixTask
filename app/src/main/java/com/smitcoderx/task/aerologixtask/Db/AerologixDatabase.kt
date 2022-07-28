@@ -10,7 +10,7 @@ import com.smitcoderx.task.aerologixtask.Utils.Convertor
 
 @Database(
     entities = [Data::class],
-    version = 2
+    version = 3
 )
 @TypeConverters(Convertor::class)
 abstract class AerologixDatabase : RoomDatabase() {

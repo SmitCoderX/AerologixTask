@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AerologixTask/app/src/main/res/drawable/bg_trans.xml" value="0.1" />
+        <entry key="..\:/AerologixTask/app/src/main/res/drawable/bg_trans_fab.xml" value="0.1" />
+        <entry key="..\:/AerologixTask/app/src/main/res/drawable/ic_load.xml" value="0.1" />
+        <entry key="..\:/AerologixTask/app/src/main/res/drawable/ic_save.xml" value="0.1" />
         <entry key="..\:/AerologixTask/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AerologixTask/app/src/main/res/xml/provider_path.xml" value="0.17074275362318841" />
         <entry key="app/src/main/res/drawable/bg_trans.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/ic_down.xml" value="0.1945" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />

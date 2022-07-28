@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
@@ -8,10 +9,12 @@
     tools:context=".UI.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coo_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/co_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -61,50 +64,41 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.core.widget.NestedScrollView>
+
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+                android:id="@+id/fab_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                app:fab_addButtonPlusIconColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                fab:fab_addButtonStrokeVisible="false"
+                fab:fab_expandDirection="up"
+                fab:fab_labelStyle="@style/menu_labels_style">
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_load"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/black"
+                    app:fab_icon="@drawable/ic_load"
+                    app:fab_size="mini"
+                    app:fab_title="Load Data"
+                    app:rippleColor="@color/trans_gray" />
+
+                <com.getbase.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/black"
+                    app:fab_icon="@drawable/ic_save"
+                    app:fab_size="mini"
+                    app:fab_title="Save Data"
+                    app:rippleColor="@color/trans_gray" />
+
+            </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.getbase.floatingactionbutton.FloatingActionsMenu
-            android:id="@+id/fab_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            fab:fab_addButtonColorNormal="@color/colorPrimary"
-            fab:fab_addButtonColorPressed="@color/transparent_bg"
-            fab:fab_addButtonPlusIconColor="@color/black"
-            fab:fab_addButtonStrokeVisible="false"
-            fab:fab_expandDirection="up"
-            fab:fab_labelStyle="@style/menu_labels_style">
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_manually"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@color/black"
-                app:fab_colorNormal="@color/colorPrimary"
-                app:fab_colorPressed="@color/colorTransparentBlack"
-                app:fab_icon="@drawable/ic_edit"
-                app:fab_size="mini"
-                app:fab_title="Add Item Manually"
-                app:rippleColor="@color/colorTransparentBlack"
-                fab:fab_addButtonColorNormal="@color/colorPrimary" />
-
-
-            <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_scanner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@color/black"
-                app:fab_colorNormal="@color/colorPrimary"
-                app:fab_colorPressed="@color/colorTransparentBlack"
-                app:fab_icon="@drawable/ic_scan"
-                app:fab_size="mini"
-                app:fab_title="Add Through Scan"
-                app:rippleColor="@color/colorTransparentBlack"
-                fab:fab_addButtonColorNormal="@color/colorPrimary" />
-
-        </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
