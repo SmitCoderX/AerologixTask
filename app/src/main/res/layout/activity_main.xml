@@ -1,48 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_10sdp"
-    tools:context=".MainActivity">
+    tools:context=".UI.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_image"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
-            android:elevation="@dimen/_10sdp"
-            app:layout_anchorGravity="top|center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/customRoundedImageView"
-            tools:src="@mipmap/ic_launcher" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_greetings"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_greetings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/demo_text"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_itemList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="visible"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_greetings"
+                        tools:listitem="@layout/layout_list_item" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_15ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Greetings" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_itemList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_margin="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_greetings" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            fab:fab_addButtonColorNormal="@color/colorPrimary"
+            fab:fab_addButtonColorPressed="@color/transparent_bg"
+            fab:fab_addButtonPlusIconColor="@color/black"
+            fab:fab_addButtonStrokeVisible="false"
+            fab:fab_expandDirection="up"
+            fab:fab_labelStyle="@style/menu_labels_style">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_manually"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/black"
+                app:fab_colorNormal="@color/colorPrimary"
+                app:fab_colorPressed="@color/colorTransparentBlack"
+                app:fab_icon="@drawable/ic_edit"
+                app:fab_size="mini"
+                app:fab_title="Add Item Manually"
+                app:rippleColor="@color/colorTransparentBlack"
+                fab:fab_addButtonColorNormal="@color/colorPrimary" />
+
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_scanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tint="@color/black"
+                app:fab_colorNormal="@color/colorPrimary"
+                app:fab_colorPressed="@color/colorTransparentBlack"
+                app:fab_icon="@drawable/ic_scan"
+                app:fab_size="mini"
+                app:fab_title="Add Through Scan"
+                app:rippleColor="@color/colorTransparentBlack"
+                fab:fab_addButtonColorNormal="@color/colorPrimary" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

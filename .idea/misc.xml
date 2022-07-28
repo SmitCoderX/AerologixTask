@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AerologixTask/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_trans.xml" value="0.1945" />
+        <entry key="app/src/main/res/drawable/ic_down.xml" value="0.1945" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_job_item.xml" value="0.3302083333333333" />
         <entry key="app/src/main/res/layout/layout_list_item.xml" value="0.3302083333333333" />
       </map>
     </option>

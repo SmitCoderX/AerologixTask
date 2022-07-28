@@ -1,5 +1,9 @@
 package com.smitcoderx.task.aerologixtask.Model
 
+
+import com.squareup.moshi.Json
+
 data class ApiResponse(
-    val `data`: List<Data>
+    @Json(name = "data")
+    var data: List<Data>
 )

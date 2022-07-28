@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Aerologix Task</string>
-    <string name="expand_collpase">Expand/Collpase</string>
+    <string name="expand_collapse">Expand/Collapse</string>
+    <string name="user_image">User Image</string>
+    <string name="demo_text">Welcome Back, Admin</string>
+    <string name="job">Job</string>
+    <string name="edu">Education</string>
 </resources>

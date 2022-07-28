@@ -3,46 +3,236 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/_6sdp">
+    android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_list_item"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/co_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="@dimen/_5sdp"
-        android:elevation="@dimen/_10sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_10sdp">
+        android:background="@drawable/bg_trans">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_list_item"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="@dimen/_10sdp">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:elevation="@dimen/_6sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_6sdp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_10sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_user_small"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@color/black" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@id/iv_user_small"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Check Name" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_fullView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_userName">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_userFull"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toEndOf="@id/iv_user_small"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Check Name" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_Age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        tools:text="Age" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        tools:text="Gender" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:elevation="@dimen/_6sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_6sdp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_list_item">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/co_job"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Check Name" />
+                android:padding="@dimen/_10sdp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_job_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/job"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:drawableEnd="@drawable/ic_down"
+                    app:drawableStartCompat="@drawable/ic_work"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_job_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_job_title"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/layout_job_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_edu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:elevation="@dimen/_6sdp"
+            android:visibility="gone"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_6sdp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_job">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/co_edu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_edu_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/edu"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:drawableEnd="@drawable/ic_down"
+                    app:drawableStartCompat="@drawable/ic_edu"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_edu_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_edu_title"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/layout_job_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user_full_image"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:contentDescription="@string/user_image"
+        android:elevation="@dimen/_10sdp"
+        android:visibility="gone"
+        app:layout_anchor="@id/card_list_item"
+        app:layout_anchorGravity="top|center_horizontal"
+        tools:src="@color/black" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_expand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:contentDescription="@string/expand_collpase"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:clickable="true"
+        android:contentDescription="@string/expand_collapse"
+        android:focusable="true"
         android:src="@drawable/ic_down"
-        app:elevation="@dimen/_10sdp"
+        app:elevation="@dimen/_6sdp"
         app:fabSize="mini"
         app:layout_anchor="@id/card_list_item"
-        app:layout_anchorGravity="bottom|end" />
+        app:layout_anchorGravity="center|end"
+        app:rippleColor="#44d3d3d3"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
